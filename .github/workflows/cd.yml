@@ -74,7 +74,6 @@ jobs:
         with:
           role-to-assume: arn:aws:iam::216084506783:role/GitHubActionsDeployRole
           aws-region: ${{ env.AWS_REGION }}
-          unset-current-credentials: true
 
       - name: Sanity check AWS identity
         run: |
