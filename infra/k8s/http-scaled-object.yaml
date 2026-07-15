@@ -1,0 +1,24 @@
+kind: HTTPScaledObject
+apiVersion: http.keda.sh/v1alpha1
+metadata:
+  name: determined-kalam-9bfceb8d20-scaler
+  namespace: apps-prod
+spec:
+  hosts:
+    - cc1fbde45ead-in-south-01.mayson.dev
+  pathPrefixes:
+    - /eu-west-1-backstractelb-f4cac7-coll-a2ea7f17d37e4f23a3ae2df1a29c0d3f/ # e.g. /infallible-naveen-... determined-kalam-9bfceb8d20/
+  scaleTargetRef:
+    name: determined-kalam-9bfceb8d20-depl
+    kind: Deployment
+    apiVersion: apps/v1
+    service: determined-kalam-9bfceb8d20-srv # e.g. coll-8a2a...-srv
+    port: 80
+  replicas:
+    min: 0
+    max: 10
+  scaledownPeriod: 604800 #inseconds
+  scalingMetric:
+    requestRate:
+      targetValue: 100
+      window: 1m

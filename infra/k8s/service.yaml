@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: determined-kalam-9bfceb8d20-srv
+  namespace: apps-prod
+spec:
+  selector:
+    app: determined-kalam-9bfceb8d20
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 7070
+  type: ClusterIP
